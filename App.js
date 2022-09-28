@@ -10,8 +10,15 @@
  import React from 'react';
  import type {Node} from 'react';
  import Router from './src/navigation/Router';
+
+ const db = require('./src/components/Handlers/database.js');
  
  const App: () => Node = () => {
+  try {
+    db.createContactsTable();
+  } catch (error) {
+    console.log('Failed to create contacts table ' + error);
+  }
    return <Router />;
  };
  
