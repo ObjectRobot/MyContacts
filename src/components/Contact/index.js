@@ -7,7 +7,7 @@ const Contact = props => {
     const post = props.post;
 
     const onPress = () => {
-        console.log(post.fullname + " " + post.email + " " + post.phone);
+        console.log(post.fullname);
     }
 
   return (

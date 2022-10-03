@@ -10,30 +10,29 @@ const AddContact = props => {
     const navigation = useNavigation();
 
     const [fullname, setFullName] = useState('');
-    const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
 
     const onContactAdd = () => {
         if (!fullname){
             alert('Enter Contact Fullname.');
             return;
         }
-        if (!email){
-            alert('Enter Contact Email.');
-            return;
-        }
         if (!phone){
             alert('Enter Contact Phone in format NPA-NXX-XXXX.');
             return;
         }
+        if (!email){
+            alert('Enter Contact Email.');
+            return;
+        }
         try {
-            database.addContact(fullname, email, phone);
+            database.addContact(fullname, phone, email);
         } catch (error) {
             console.log('Error adding contact ' + error);
         }
 
-        alert(fullname + " " + email + " " + phone + ' Added!');
-        navigation.navigate('Go To Contacts!');
+        alert(fullname +  ' Added!');
     }
 
   return (
@@ -44,15 +43,7 @@ const AddContact = props => {
                 onChangeText={value => setFullName(value)}
                 style={styles.fullname}
                 clearButtonMode={'while-editing'}
-                placeholder={'Enter Full Name'}
-                placeholderTextColor={'grey'}
-            />
-            <TextInput 
-                value={email}
-                onChangeText={value => setEmail(value)}
-                style={styles.email}
-                clearButtonMode={'while-editing'}
-                placeholder={'Enter Email'}
+                placeholder={'Enter Contact Full Name'}
                 placeholderTextColor={'grey'}
             />
             <TextInput 
@@ -60,7 +51,15 @@ const AddContact = props => {
                 onChangeText={value => setPhone(value)}
                 style={styles.phone}
                 clearButtonMode={'while-editing'}
-                placeholder={'Enter Phone in format NPA-NXX-XXXX'}
+                placeholder={'Enter Contact Phone Number in format NPA-NXX-XXXX'}
+                placeholderTextColor={'grey'}
+            />
+            <TextInput 
+                value={email}
+                onChangeText={value => setEmail(value)}
+                style={styles.email}
+                clearButtonMode={'while-editing'}
+                placeholder={'Enter Contact Email'}
                 placeholderTextColor={'grey'}
             />
         </View>
